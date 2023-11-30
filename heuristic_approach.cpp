@@ -3,12 +3,14 @@
 #include <iomanip>
 using namespace std;
 
+
 // Global IO Variables
 const char separator = ' ';
 const int nameWidth = 5;
 const int numWidth = 4;
 
-// Global Classes
+
+// Course Class 
 class Course
 {
 public:
@@ -16,12 +18,14 @@ public:
     vector<string> prof;
     double remaining;
     bool assignedstatus;
+    bool partialAssignedstatus;
     Course(string name)
     {
         this->name = name;
         this->prof.clear();
         this->remaining = 1;
         this->assignedstatus = false;
+        this->partialAssignedstatus = false;
     }
     void addProf(string prof)
     {
@@ -29,6 +33,8 @@ public:
     }
 };
 
+
+// Professor Class
 class Prof
 {
 public:
@@ -39,6 +45,7 @@ public:
     vector<string> pref;
     double remaining;
     bool assignedstatus;
+    bool partialAssignedstatus;
     Prof(string name, double category, vector<string> pref)
     {
         this->name = name;
@@ -47,6 +54,7 @@ public:
         this->pref = pref;
         this->remaining = category;
         this->assignedstatus = false;
+        this->partialAssignedstatus = false;
     }
     void addCourse(string course)
     {
@@ -68,6 +76,7 @@ public:
     }
 };
 
+
 // Global Variables
 int numCourses;
 int numProfs;
@@ -76,7 +85,8 @@ vector<Prof> profs;
 int assignNo = 1;
 int prefListSize = 7;
 
-// Final Functions
+
+// Print Function
 void printAssignment(vector<Prof> profs)
 {
     cout << "Assignment: " << assignNo << endl;
@@ -89,6 +99,8 @@ void printAssignment(vector<Prof> profs)
          << endl;
 }
 
+
+// Helper Function
 int getProfPos(string name)
 {
     for (int i = 0; i < profs.size(); i++)
@@ -101,6 +113,8 @@ int getProfPos(string name)
     cout << "No Prof Found" << endl;
 }
 
+
+// Helper Function
 int getCoursePos(string name)
 {
     for (int i = 0; i < courses.size(); i++)
@@ -113,45 +127,53 @@ int getCoursePos(string name)
     cout << "No Course Found" << endl;
 }
 
+
+// Main Function implementing the heuristic approach
 void solve(vector<Prof> profs, vector<Course> courses)
 {
+    int check = 0;
     for (int i = 0; i < profs.size(); i++)
     {
-        int check = 0;
-        if (profs[i].assignedstatus == true)
+        if (profs[i].remaining == 0)
         {
             check++;
-            continue;
         }
-        for (int j = 0; j < profs[i].pref.size(); j++)
+        else
         {
-            int coursePos = getCoursePos(profs[i].pref[j]);
-            if (courses[coursePos].assignedstatus == false && profs[i].remaining > 0)
+            for (int j = 0; j < profs[i].pref.size(); j++)
             {
-                double minm = min(profs[i].remaining, courses[coursePos].remaining);
-                profs[i].addCourse(courses[coursePos].name);
-                profs[i].remaining -= minm;
-                courses[coursePos].addProf(profs[i].name);
-                courses[coursePos].remaining -= minm;
-                if (courses[coursePos].remaining == 0)
-                    courses[coursePos].assignedstatus = true;
-                if (profs[i].remaining == 0)
+                int coursePos = getCoursePos(profs[i].pref[j]);
+                if (courses[coursePos].remaining > 0)
                 {
-                    check++;
-                    profs[i].assignedstatus = true;
+                    double minm = min(profs[i].remaining, courses[coursePos].remaining);
+                    profs[i].remaining -= minm;
+                    courses[coursePos].remaining -= minm;
+                    profs[i].addCourse(courses[coursePos].name);
+                    courses[coursePos].addProf(profs[i].name);
+                    break;
                 }
-                
             }
         }
+        if (check == profs.size())
+        {
+            break;
+        }
+        if (i == numProfs - 1)
+        {
+            i = -1;
+        }
     }
+    sort(profs.begin(), profs.end(), [](Prof a, Prof b)
+         { return a.name < b.name; });
     printAssignment(profs);
 }
+
 
 // Main Function
 int main()
 {
     freopen("input.txt", "r", stdin);
-    freopen("output.txt", "w", stdout);
+    freopen("heuristic_output.txt", "w", stdout);
     cin >> numCourses >> numProfs;
     for (int i = 0; i < numCourses; i++)
     {
@@ -165,7 +187,6 @@ int main()
         string name;
         double category;
         cin >> name >> category;
-        // get pref list
         vector<string> pref;
         for (int j = 0; j < prefListSize; j++)
         {
@@ -176,7 +197,8 @@ int main()
         Prof prof(name, category, pref);
         profs.push_back(prof);
     }
-    int numOfVariations = 2;
+    int numOfVariations = 10; // Number of times the algorithm is run
+    cout << "Heuristic Approach: \n" << endl;
     for (int i = 0; i < numOfVariations; i++)
     {
         random_shuffle(profs.begin(), profs.end());
