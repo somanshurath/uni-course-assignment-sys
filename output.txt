@@ -1,0 +1,9 @@
+Assignment: 1
+E  | Category: 1.5  | Courses: ML DBS 
+B  | Category: 1    | Courses: CN DAA CC 
+D  | Category: 1.5  | Courses: 
+C  | Category: 1    | Courses: DSA 
+A  | Category: 0.5  | Courses: 
+F  | Category: 1.5  | Courses: MPI 
+-----------------------------------------------
+
