@@ -115,33 +115,32 @@ int getCoursePos(string name)
 
 void solve(vector<Prof> profs, vector<Course> courses)
 {
-    for (int j = 0; j < prefListSize; j++)
+    for (int i = 0; i < profs.size(); i++)
     {
-        for (int i = 0; i < profs.size(); i++)
+        int check = 0;
+        if (profs[i].assignedstatus == true)
         {
-            if (profs[i].assignedstatus == true)
+            check++;
+            continue;
+        }
+        for (int j = 0; j < profs[i].pref.size(); j++)
+        {
+            int coursePos = getCoursePos(profs[i].pref[j]);
+            if (courses[coursePos].assignedstatus == false && profs[i].remaining > 0)
             {
-                continue;
-            }
-            else
-            {
-                int coursePos = getCoursePos(profs[i].pref[j]);
-                if (profs[i].assignedstatus == false && courses[getCoursePos(profs[i].pref[j])].assignedstatus == false)
-                {
-                    int coursePos = getCoursePos(profs[i].pref[j]);
-                    profs[i].addCourse(profs[i].pref[j]);
-                    courses[coursePos].addProf(profs[i].name);
-                    courses[coursePos].remaining -= min(profs[i].remaining, courses[coursePos].remaining);
-                    profs[i].remaining -= min(profs[i].remaining, courses[coursePos].remaining);
-                }
+                double minm = min(profs[i].remaining, courses[coursePos].remaining);
+                profs[i].addCourse(courses[coursePos].name);
+                profs[i].remaining -= minm;
+                courses[coursePos].addProf(profs[i].name);
+                courses[coursePos].remaining -= minm;
+                if (courses[coursePos].remaining == 0)
+                    courses[coursePos].assignedstatus = true;
                 if (profs[i].remaining == 0)
                 {
+                    check++;
                     profs[i].assignedstatus = true;
                 }
-                if (courses[coursePos].remaining == 0)
-                {
-                    courses[coursePos].assignedstatus = true;
-                }
+                
             }
         }
     }
@@ -177,7 +176,7 @@ int main()
         Prof prof(name, category, pref);
         profs.push_back(prof);
     }
-    int numOfVariations = 1;
+    int numOfVariations = 2;
     for (int i = 0; i < numOfVariations; i++)
     {
         random_shuffle(profs.begin(), profs.end());
