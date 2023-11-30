@@ -1,7 +1,4 @@
-# disco-ucas-project
-CS F222 DISCO Project: University Course Assignment System
-
-# DISCO Project : University Course Assignment System
+# CS F222 DISCO Project : University Course Assignment System
 ### Collaborators : Somanshu Rath (2022A7PS0032G), Sanskar Mundhra (2022A7PS0757G), Aditya Sharma (2022A7PS1108G)
 
 ## Problem Statement 

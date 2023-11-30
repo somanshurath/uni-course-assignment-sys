@@ -4,17 +4,11 @@ from tabulate import tabulate
 
 
 def min_zero_row(zero_matrix, mark_zero):
-    '''
-    Step 1. The function finds the row containing the fewest 0.
-    Step 2. Select the zero number on the row, and then mark row and column of that position as False.
-    '''
-
     min_row = [99999, -1]
     for row_no in range(zero_matrix.shape[0]):
         row_sum = numpy.sum(zero_matrix[row_no] == True)
         if row_sum > 0 and min_row[0] > row_sum:
             min_row = [numpy.sum(zero_matrix[row_no] == True), row_no]
-
     zero_index = numpy.where(zero_matrix[min_row[1]] == True)[0][0]
     mark_zero.append((min_row[1], zero_index))
     zero_matrix[min_row[1], :] = False
@@ -22,26 +16,18 @@ def min_zero_row(zero_matrix, mark_zero):
 
 
 def mark_matrix(matrix):
-    '''
-    Finding the returning possible solutions for LAP problem.
-    '''
-
     current_matrix = matrix
     zero_bool_matrix = (current_matrix == 0)
     zero_bool_matrix_copy = zero_bool_matrix.copy()
-
     marked_zero = []
     while (True in zero_bool_matrix_copy):
         min_zero_row(zero_bool_matrix_copy, marked_zero)
-
     marked_zero_row = []
     marked_zero_col = []
     for i in range(len(marked_zero)):
         marked_zero_row.append(marked_zero[i][0])
         marked_zero_col.append(marked_zero[i][1])
-
     non_marked_row = list(set(range(current_matrix.shape[0])) - set(marked_zero_row))
-
     marked_cols = []
     check_switch = True
     while check_switch:
@@ -52,33 +38,28 @@ def mark_matrix(matrix):
                 if row_array[j] == True and j not in marked_cols:
                     marked_cols.append(j)
                     check_switch = True
-
         for row_no, col_no in marked_zero:
             if row_no not in non_marked_row and col_no in marked_cols:
                 non_marked_row.append(row_no)
                 check_switch = True
     marked_rows = list(set(range(matrix.shape[0])) - set(non_marked_row))
-
     return (marked_zero, marked_rows, marked_cols)
 
 
 def adjust_matrix(mat, cover_rows, cover_cols):
     current_matrix = mat
     non_zero_element = []
-
     for row in range(len(current_matrix)):
         if row not in cover_rows:
             for i in range(len(current_matrix[row])):
                 if i not in cover_cols:
                     non_zero_element.append(current_matrix[row][i])
     min_num = min(non_zero_element)
-
     for row in range(len(current_matrix)):
         if row not in cover_rows:
             for i in range(len(current_matrix[row])):
                 if i not in cover_cols:
                     current_matrix[row, i] = current_matrix[row, i] - min_num
-   
     for row in range(len(cover_rows)):
         for col in range(len(cover_cols)):
             current_matrix[cover_rows[row], cover_cols[col]
@@ -89,21 +70,16 @@ def adjust_matrix(mat, cover_rows, cover_cols):
 def hungarian_algorithm(mat):
     dim = mat.shape[0]
     current_matrix = mat
-
     for row_no in range(mat.shape[0]):
         current_matrix[row_no] = current_matrix[row_no] - numpy.min(current_matrix[row_no])
-
     for col_no in range(mat.shape[1]):
         current_matrix[:, col_no] = current_matrix[:, col_no] - numpy.min(current_matrix[:, col_no])
     zero_count = 0
     while zero_count < dim:
-       
         ans_pos, marked_rows, marked_cols = mark_matrix(current_matrix)
         zero_count = len(marked_rows) + len(marked_cols)
-
         if zero_count < dim:
             current_matrix = adjust_matrix(current_matrix, marked_rows, marked_cols)
-
     return ans_pos
 
 
@@ -117,33 +93,15 @@ def ans_calculation(mat, pos):
 
 
 def solve(Matrix):
-    '''Hungarian Algorithm: 
-    Finding the minimum value in linear assignment problem.
-    Therefore, we can find the minimum value set in net matrix 
-    by using Hungarian Algorithm. In other words, the maximum value
-    and elements set in cost matrix are available.'''
-
-    # The matrix who you want to find the minimum sum
     cost_matrix = Matrix
-    # Get the element position.
     ans_pos = hungarian_algorithm(cost_matrix.copy())
-    # Get the minimum or maximum value and corresponding matrix.
     ans, ans_mat = ans_calculation(cost_matrix, ans_pos)
-
-    # Show the result
     return [int(ans), ans_mat]
-
-# Path: input.txt
-# 1. The first line is the list of courses.
-# 2. The following lines are the list of professors.
-# 3. The first element of each line is the name of professor.
-# 4. The second element of each line is the category of professor.
-# 5. The following elements of each line are the courses that professor can teach in order of preference.
 
 
 prof_dict = {}
 profs = {}
-error = 'No assignment possible, constraints unsatisfied.'
+error = 'No assignment possible, constraints'
 N = 0
 course_dict_1 = {}
 course_dict_2 = {}
@@ -180,7 +138,6 @@ with open("input.txt") as input_data:
             break
 
 from tabulate import tabulate
-
 if N != L:
     print(error)
 else:
@@ -190,7 +147,6 @@ else:
     else:
         print("\nMost Optimal Assignment(s) :")
         answer_set = []
-
         def Solve(solution):
             answer = deepcopy(profs)
             for i in range(N):
@@ -198,7 +154,6 @@ else:
                     if solution[i][j]:
                         course = course_dict_1[i]
                         answer[prof_dict[j]][1].add(course)
-            # Check for unique assignments before appending
             if answer not in answer_set:
                 answer_set.append(answer)
 
@@ -211,8 +166,6 @@ else:
                 if m == M:
                     Solve(Solution)
                 hungarian_matrix[i][j] = original
-
-        # Output formatting using tabulate
         if len(answer_set) == 0:
             print("No valid assignments found.")
         else:
