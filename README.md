@@ -1,6 +1,9 @@
 # CS F222 DISCO Project : University Course Assignment System
 ### Collaborators : Somanshu Rath (2022A7PS0032G), Sanskar Mundhra (2022A7PS0757G), Aditya Sharma (2022A7PS1108G)
 
+## Project Video
+https://drive.google.com/file/d/18fihx7giht_eTOstPuwyxAZyXhsB2oe4/view?usp=sharing
+
 ## How to run the code?
 We have utilized two algorithms for approaching the problem statement. 
 #### 1. Heuristic Algorithm <br>
