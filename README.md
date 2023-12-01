@@ -12,6 +12,7 @@ To change test cases to run on it, select any test case from ```test_cases.txt``
 Then run the executable file and get the result in ```heuristic_output.txt```.
 #### 2. Hungarian Algorithm <br>
 To run this algorithm, run ```hungarian_approach.py```. <br>
+Alternatively, type the following in the terminal ```python hungarian_approach.py > hungarian_output.txt```. <br>
 To change test cases to run on it, select any test case from ```test_cases.txt``` (or make a custom test case) and copy-paste it to ```input.txt```. <br>
 Output will be displayed in the terminal.
 
