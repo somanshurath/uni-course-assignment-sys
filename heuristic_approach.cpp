@@ -6,7 +6,7 @@ using namespace std;
 
 // Global IO Variables
 const char separator = ' ';
-const int nameWidth = 5;
+const int nameWidth = 7;
 const int numWidth = 4;
 
 
@@ -70,7 +70,7 @@ public:
         cout << "Courses: ";
         for (int i = 0; i < this->courses.size(); i++)
         {
-            cout << this->courses[i] << " ";
+            cout << left << setw(nameWidth) << setfill(separator) << this->courses[i] << " ";
         }
         cout << endl;
     }
@@ -83,7 +83,8 @@ int numProfs;
 vector<Course> courses;
 vector<Prof> profs;
 int assignNo = 1;
-int prefListSize = 7;
+int prefListSize;
+vector<vector<Prof>> Solutions;
 
 
 // Print Function
@@ -128,6 +129,25 @@ int getCoursePos(string name)
 }
 
 
+// Helper Function
+bool checkAllProfAssigned(vector<Prof> profs){
+    for(int i=0; i<profs.size(); i++){
+        if(profs[i].remaining > 0){
+            return false;
+        }
+    }
+    return true;
+}
+
+
+// Helper Function
+void printAllAssignments(){
+    for(int i=0; i<Solutions.size(); i++){
+        printAssignment(Solutions[i]);
+    }
+}
+
+
 // Main Function implementing the heuristic approach
 void solve(vector<Prof> profs, vector<Course> courses)
 {
@@ -165,16 +185,45 @@ void solve(vector<Prof> profs, vector<Course> courses)
     }
     sort(profs.begin(), profs.end(), [](Prof a, Prof b)
          { return a.name < b.name; });
-    printAssignment(profs);
+
+    if(checkAllProfAssigned(profs)){
+        if (Solutions.size() == 0)
+        {
+            Solutions.push_back(profs);
+        }
+        else
+        {
+            bool unique = true;
+            for (int i = 0; i < Solutions.size(); i++)
+            {
+                int check = 0;
+                for (int j = 0; j < profs.size(); j++)
+                {
+                    if (Solutions[i][j].courses == profs[j].courses)
+                    {
+                        check++;
+                    }
+                }
+                if (check == profs.size())
+                {
+                    unique = false;
+                }
+            }
+            if (unique)
+            Solutions.push_back(profs);
+        }
+    }
 }
 
 
-// Main Function
+
+
+// C++ Main Function
 int main()
 {
     freopen("input.txt", "r", stdin);
     freopen("heuristic_output.txt", "w", stdout);
-    cin >> numCourses >> numProfs;
+    cin >> prefListSize >> numCourses >> numProfs;
     for (int i = 0; i < numCourses; i++)
     {
         string name;
@@ -197,7 +246,7 @@ int main()
         Prof prof(name, category, pref);
         profs.push_back(prof);
     }
-    int numOfVariations = 10; // Number of times the algorithm is run
+    int numOfVariations = 100; // Number of times the algorithm is run
     cout << "Heuristic Approach: \n" << endl;
     for (int i = 0; i < numOfVariations; i++)
     {
@@ -206,7 +255,9 @@ int main()
         copy(profs.begin(), profs.end(), back_inserter(profsCopy));
         vector<Course> coursesCopy;
         copy(courses.begin(), courses.end(), back_inserter(coursesCopy));
+
         solve(profsCopy, coursesCopy);
     }
+    printAllAssignments();
     return 0;
 }

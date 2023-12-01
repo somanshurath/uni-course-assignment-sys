@@ -106,8 +106,10 @@ N = 0
 course_dict_1 = {}
 course_dict_2 = {}
 
+
 with open("input.txt") as input_data:
     ignore = input_data.readline()
+    print('Hungarian Algorithm:\n\n')
     course_list = input_data.readline().split()
     print('List of Courses: ', course_list)
     L = len(course_list) * 2
