@@ -1,0 +1,89 @@
+Hungarian Algorithm:
+
+
+List of Courses:  ['DSA', 'DBS', 'MPI', 'CN', 'DAA', 'CC', 'ML', 'OS', 'OOP', 'LCS', 'DD', 'DISCO', 'CP', 'CA', 'CB']
+Professor  1 :
+['A', '0.5', 'CP', 'CA', 'CB', 'DSA', 'ML', 'DBS', 'MPI', 'CN', 'DAA', 'CC', 'OS', 'OOP', 'LCS', 'DD', 'DISCO']
+Professor  2 :
+['B', '1', 'ML', 'CN', 'DAA', 'CC', 'MPI', 'CN', 'DAA', 'OS', 'OOP', 'LCS', 'DD', 'DISCO', 'CP', 'CA', 'CB']
+Professor  3 :
+['C', '1', 'DSA', 'MPI', 'ML', 'CN', 'DAA', 'CC', 'DBS', 'OS', 'OOP', 'LCS', 'DD', 'DISCO', 'CP', 'CA', 'CB']
+Professor  4 :
+['D', '1.5', 'DAA', 'CC', 'OS', 'OOP', 'LCS', 'DD', 'DISCO', 'CP', 'CA', 'CB', 'ML', 'CN', 'DAA', 'MPI', 'CN']
+Professor  5 :
+['E', '1.5', 'ML', 'DSA', 'DBS', 'MPI', 'CN', 'DAA', 'CC', 'OS', 'OOP', 'LCS', 'DD', 'DISCO', 'CP', 'CA', 'CB']
+Professor  6 :
+['F', '1.5', 'MPI', 'ML', 'DSA', 'DBS', 'OS', 'OOP', 'LCS', 'DD', 'DISCO', 'CP', 'CA', 'CB', 'CN', 'DAA', 'CC']
+Professor  7 :
+['G', '1', 'ML', 'CN', 'DAA', 'CC', 'MPI', 'CN', 'DAA', 'OS', 'OOP', 'LCS', 'DD', 'DISCO', 'CP', 'CA', 'CB']
+Professor  8 :
+['H', '1', 'DD', 'DISCO', 'CP', 'CA', 'CB', 'DSA', 'MPI', 'ML', 'CN', 'DAA', 'CC', 'DBS', 'OS', 'OOP', 'LCS']
+Professor  9 :
+['I', '1.5', 'ML', 'CN', 'DAA', 'MPI', 'CN', 'DAA', 'CC', 'OS', 'OOP', 'LCS', 'DD', 'DISCO', 'CP', 'CA', 'CB']
+Professor  10 :
+['J', '1.5', 'LCS', 'DD', 'DISCO', 'CP', 'CA', 'CB', 'ML', 'DSA', 'DBS', 'MPI', 'CN', 'DAA', 'CC', 'OS', 'OOP']
+Professor  11 :
+['K', '1.5', 'MPI', 'ML', 'CN', 'DAA', 'CC', 'DSA', 'DBS', 'OS', 'OOP', 'LCS', 'DD', 'DISCO', 'CP', 'CA', 'CB']
+Professor  12 :
+['L', '1.5', 'DISCO', 'CP', 'CA', 'CB', 'ML', 'CN', 'DAA', 'CC', 'MPI', 'CN', 'DAA', 'OS', 'OOP', 'LCS', 'DD']
+
+Most Optimal Assignment(s) :
+Optimal Assignments:
+
+Assignment 1:
++-------------+--------------------+
+| Professor   | Assigned Courses   |
++=============+====================+
+| A           | CP                 |
++-------------+--------------------+
+| B           | CC                 |
++-------------+--------------------+
+| C           | DSA                |
++-------------+--------------------+
+| D           | OS, OOP            |
++-------------+--------------------+
+| E           | DBS, ML            |
++-------------+--------------------+
+| F           | MPI, OOP           |
++-------------+--------------------+
+| G           | ML                 |
++-------------+--------------------+
+| H           | DD                 |
++-------------+--------------------+
+| I           | DAA, CN            |
++-------------+--------------------+
+| J           | LCS, DISCO         |
++-------------+--------------------+
+| K           | DAA                |
++-------------+--------------------+
+| L           | CP, CA, DISCO      |
++-------------+--------------------+
+
+Assignment 2:
++-------------+--------------------+
+| Professor   | Assigned Courses   |
++=============+====================+
+| A           | CA                 |
++-------------+--------------------+
+| B           | CC                 |
++-------------+--------------------+
+| C           | DSA                |
++-------------+--------------------+
+| D           | OS, OOP            |
++-------------+--------------------+
+| E           | DBS, ML            |
++-------------+--------------------+
+| F           | MPI, OOP           |
++-------------+--------------------+
+| G           | ML                 |
++-------------+--------------------+
+| H           | DD                 |
++-------------+--------------------+
+| I           | DAA, CN            |
++-------------+--------------------+
+| J           | LCS, DISCO         |
++-------------+--------------------+
+| K           | DAA                |
++-------------+--------------------+
+| L           | CP, DISCO          |
++-------------+--------------------+

@@ -246,7 +246,7 @@ int main()
         Prof prof(name, category, pref);
         profs.push_back(prof);
     }
-    int numOfVariations = 50; // Number of times the algorithm is run
+    int numOfVariations = 100; // Number of times the algorithm is run
     cout << "Heuristic Approach: \n" << endl;
     for (int i = 0; i < numOfVariations; i++)
     {

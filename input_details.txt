@@ -8,7 +8,7 @@ Prof 1 details...
 .
 Prof n details...
 
-!-- See initial input.txt to see how input details implementation --!
+!-- Condition: Test Case must be valid. In the sense, total capacity of profs <= no. of courses --!
 
 7 7 6
 DSA DBS MPI CN DAA CC ML
