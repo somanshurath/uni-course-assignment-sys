@@ -1,5 +1,5 @@
 # CS F222 DISCO Project : University Course Assignment System
-### Collaborators : Somanshu Rath (2022A7PS0032G), Sanskar Mundhra (2022A7PS0757G), Aditya Sharma (2022A7PS1108G)
+### Collaborators: Somanshu Rath (2022A7PS0032G), Sanskar Mundhra (2022A7PS0757G), Aditya Sharma (2022A7PS1108G)
 
 ## Project Video
 https://drive.google.com/file/d/18fihx7giht_eTOstPuwyxAZyXhsB2oe4/view?usp=sharing
@@ -23,6 +23,8 @@ The research problem at hand centers on optimizing the University Course Assignm
 In this system, faculty members possess the flexibility to take multiple courses in a given semester, and conversely, a single course can be assigned to multiple faculty members. When a course is shared between two professors, each professor's load is considered to be 0.5 courses. Moreover, each faculty member maintains a preference list of courses, ordered by their personal preferences, with the most preferred courses appearing at the top. Importantly, there is no prioritization among faculty members within the same category.
 
 The primary objective of this research problem is to develop an assignment scheme that maximizes the number of courses assigned to faculty while aligning with their preferences and the category-based constraints ("x1," "x2," "x3"). The challenge lies in ensuring that a course can only be assigned to a faculty member if it is present in their preference list.
+
+
 
 ## Our Approaches
 
