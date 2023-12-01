@@ -24,8 +24,8 @@ The primary objective of this research problem is to develop an assignment schem
 ## Our Approaches
 
 #### Heuristic Algorithm Approach
-This approach gives us mutliple (not-optimized) assignments. It randomly shuffles the list of professors and assigns them one course at a time, until all the slots are fulfilled. This approach gives out all possible permutations of assignments based on preference order  
+This approach gives us mutliple (not-optimized) assignments. It randomly shuffles the list of professors and assigns them one course at a time, until all the slots are fulfilled. This approach gives out all possible permutations of assignments based on preference order and our approach. 
 
 
 ### Hungarian Algorithm Approach
-This approach gives more optimized assignments. Here we have utilized the Hungarian algorithm, and implemented that logic to this situation.
+This approach gives more optimized assignments. Here we have utilized the Hungarian algorithm, and implemented that logic to this situation. The overall assignment is more optimal and hence fewer in number.
