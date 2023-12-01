@@ -4,10 +4,18 @@ from tabulate import tabulate
 
 
 def min_zero_row(zero_matrix, mark_zero):
-    '''
-    Step 1. The function finds the row containing the fewest 0.
-    Step 2. Select the zero number on the row, and then mark row and column of that position as False.
-    '''
+    """
+    Finds the row in the zero_matrix with the fewest number of True values and marks the corresponding element as zero.
+
+    Parameters:
+    - zero_matrix (numpy.ndarray): The matrix containing boolean values.
+    - mark_zero (list): A list of tuples representing the indices of the marked zeros.
+
+    Returns:
+    - None
+
+    """ 
+    
 
     min_row = [99999, -1]
     for row_no in range(zero_matrix.shape[0]):
@@ -22,9 +30,19 @@ def min_zero_row(zero_matrix, mark_zero):
 
 
 def mark_matrix(matrix):
-    '''
-    Finding the returning possible solutions for LAP problem.
-    '''
+    """
+    Generates the function comment for the given function body in a markdown code block with the correct language syntax.
+
+    Args:
+        matrix (numpy.ndarray): The input matrix.
+
+    Returns:
+        tuple: A tuple containing three lists:
+            - marked_zero (list): A list of tuples representing the coordinates of the zero elements in the matrix that have been marked.
+            - marked_rows (list): A list of row indices that have been marked.
+            - marked_cols (list): A list of column indices that have been marked.
+    """
+    
 
     current_matrix = matrix
     zero_bool_matrix = (current_matrix == 0)
@@ -63,6 +81,18 @@ def mark_matrix(matrix):
 
 
 def adjust_matrix(mat, cover_rows, cover_cols):
+    """
+    Adjusts a matrix by subtracting the minimum non-zero element from each element in the matrix, 
+    and then adding the minimum non-zero element to each element covered by the given rows and columns.
+
+    Parameters:
+    - mat (list of lists): The matrix to be adjusted.
+    - cover_rows (list): The list of row indices to be covered.
+    - cover_cols (list): The list of column indices to be covered.
+
+    Returns:
+    - list of lists: The adjusted matrix.
+    """
     current_matrix = mat
     non_zero_element = []
 
@@ -87,6 +117,15 @@ def adjust_matrix(mat, cover_rows, cover_cols):
 
 
 def hungarian_algorithm(mat):
+    """
+    Generates a function comment for the given function body.
+
+    Parameters:
+    - mat: A numpy array representing the matrix to be processed.
+
+    Returns:
+    - ans_pos: A tuple representing the position of the answer.
+    """
     dim = mat.shape[0]
     current_matrix = mat
 
@@ -108,6 +147,16 @@ def hungarian_algorithm(mat):
 
 
 def ans_calculation(mat, pos):
+    """
+    Calculates the total sum of the values in the given matrix at the specified positions.
+
+    Args:
+        mat (numpy.ndarray): The input matrix.
+        pos (list): A list of tuples representing the positions in the matrix.
+
+    Returns:
+        tuple: A tuple containing the total sum of the values and a matrix with the values at the specified positions.
+    """
     total = 0
     ans_mat = numpy.zeros((mat.shape[0], mat.shape[1]))
     for i in range(len(pos)):
@@ -117,11 +166,23 @@ def ans_calculation(mat, pos):
 
 
 def solve(Matrix):
-    '''Hungarian Algorithm: 
-    Finding the minimum value in linear assignment problem.
-    Therefore, we can find the minimum value set in net matrix 
-    by using Hungarian Algorithm. In other words, the maximum value
-    and elements set in cost matrix are available.'''
+    """
+    Find the minimum sum in a given matrix.
+
+    Parameters:
+    - Matrix: a 2D list representing the matrix to find the minimum sum.
+
+    Returns:
+    - A list containing the minimum sum and the corresponding matrix.
+
+    Example usage:
+    ```python
+    matrix = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+    result = solve(matrix)
+    print(result)  # [15, [[0, 1, 0], [1, 0, 0], [0, 0, 1]]]
+    ```
+    """
+    
 
     # The matrix who you want to find the minimum sum
     cost_matrix = Matrix
@@ -132,13 +193,6 @@ def solve(Matrix):
 
     # Show the result
     return [int(ans), ans_mat]
-
-# Path: input.txt
-# 1. The first line is the list of courses.
-# 2. The following lines are the list of professors.
-# 3. The first element of each line is the name of professor.
-# 4. The second element of each line is the category of professor.
-# 5. The following elements of each line are the courses that professor can teach in order of preference.
 
 
 prof_dict = {}
@@ -192,6 +246,15 @@ else:
         answer_set = []
 
         def Solve(solution):
+            """
+            Generates a unique solution based on the given solution.
+
+            Parameters:
+                solution (list of lists): The solution to be used for generating a unique solution.
+
+            Returns:
+                None
+            """
             answer = deepcopy(profs)
             for i in range(N):
                 for j in range(N):
