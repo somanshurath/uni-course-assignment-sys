@@ -36,7 +36,7 @@ def mark_matrix(matrix):
     Args:
         matrix (numpy.ndarray): The input matrix.
 
-    Returns:
+    Returns: 
         tuple: A tuple containing three lists:
             - marked_zero (list): A list of tuples representing the coordinates of the zero elements in the matrix that have been marked.
             - marked_rows (list): A list of row indices that have been marked.
