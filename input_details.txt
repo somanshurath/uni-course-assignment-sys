@@ -1,3 +1,25 @@
+!-- Use only one test case at a time. Copy relevant lines from here and put in input.txt --!
+
+!-- Input format --!
+PreferenceSize NumberOfCourse NumberOfProfs
+List of courses...
+Prof 1 details...
+.
+.
+Prof n details...
+
+!-- See initial input.txt to see how input details implementation --!
+
+7 7 6
+DSA DBS MPI CN DAA CC ML
+A 0.5 DSA ML DBS MPI CN DAA CC
+B 1 ML CN DAA CC MPI CN DAA 
+C 1 DSA MPI ML CN DAA CC DBS
+D 1.5 ML CN DAA MPI CN DAA CC
+E 1.5 ML DSA DBS MPI CN DAA CC
+F 1.5 MPI ML CN DAA CC DSA DBS
+
+
 15 15 12
 DSA DBS MPI CN DAA CC ML OS OOP LCS DD DISCO CP CA CB
 A 0.5 CP CA CB DSA ML DBS MPI CN DAA CC OS OOP LCS DD DISCO
